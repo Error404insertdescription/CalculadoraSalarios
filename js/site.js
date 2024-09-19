@@ -1,6 +1,12 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+$(document).ready(function() {
+    var currentYear = new Date().getFullYear();
+        
+    document.getElementById("currentYear").textContent = currentYear;
+});
+
 // Write your JavaScript code.
 document.getElementById('loadFileButton').addEventListener('click', function () {
     const input = document.createElement('input');
