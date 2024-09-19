@@ -63,36 +63,36 @@ $('#calculateButton').click(function() {
 
         switch (mediaMaxima) {
             case 15:
-                salario = "$500.000";
-                sumaSalarioTotal += 500000;
+                salario = $('#media15').val();
+                sumaSalarioTotal += parseCurrency($('#media15').val());
                 break;
             case 16:
-                salario = "$1.000.000";
-                sumaSalarioTotal += 1000000;
+                salario = $('#media16').val();
+                sumaSalarioTotal += parseCurrency($('#media16').val());
                 break;
             case 17:
-                salario = "$2.000.000";
-                sumaSalarioTotal += 2000000;
+                salario = $('#media17').val();
+                sumaSalarioTotal += parseCurrency($('#media17').val());
                 break;
             case 18:
-                salario = "$3.000.000";
-                sumaSalarioTotal += 3000000;
+                salario = $('#media18').val();
+                sumaSalarioTotal += parseCurrency($('#media18').val());
                 break;
             case 19:
-                salario = "$4.000.000";
-                sumaSalarioTotal += 4000000;
+                salario = $('#media19').val();
+                sumaSalarioTotal += parseCurrency($('#media19').val());
                 break;
             case 20:
-                salario = "$5.000.000";
-                sumaSalarioTotal += 5000000;
+                salario = $('#media20').val();
+                sumaSalarioTotal += parseCurrency($('#media20').val());
                 break;
             case 21:
-                salario = "$6.000.000";
-                sumaSalarioTotal += 6000000;
+                salario = $('#media21').val();
+                sumaSalarioTotal += parseCurrency($('#media21').val());
                 break;
             case 22:
-                salario = "$7.000.000";
-                sumaSalarioTotal += 7000000;
+                salario = $('#media22').val();
+                sumaSalarioTotal += parseCurrency($('#media22').val());
                 break;
             default:
                 salario = "$0";
@@ -125,4 +125,30 @@ function formatCurrency(value) {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(value);
+}
+
+function formatCurrencyWithSymbol(element) {
+    let value = element.value;
+    value = value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    if (value) {
+        // Convert to integer and format as currency
+        let formattedValue = parseInt(value, 10).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+        element.value = formattedValue;
+    } else {
+        element.value = '';
+    }
+}
+
+function parseCurrency(value) {
+    // Eliminar caracteres que no sean números
+    let numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
+    
+    // Verificar si el resultado es NaN, null, undefined o 0, y devolver 0 en esos casos
+    if (isNaN(numericValue) || numericValue === null || numericValue === undefined || numericValue === 0
+        || numericValue === '') {
+        return 0;
+    }
+    
+    // Devolver el valor numérico si es válido
+    return numericValue;
 }
