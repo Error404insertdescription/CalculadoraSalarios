@@ -7,6 +7,16 @@ $(document).ready(function() {
     document.getElementById("currentYear").textContent = currentYear;
 });
 
+document.getElementById('fileContent').addEventListener('paste', function(event) {
+    $('#calculateButton').show();
+});
+
+function onFileContentChanged(parameter){
+    if(parameter.value == null || parameter.value.trim() == ''){
+        $('#calculateButton').hide();
+    }
+}
+
 // Write your JavaScript code.
 document.getElementById('loadFileButton').addEventListener('click', function () {
     const input = document.createElement('input');
@@ -119,8 +129,13 @@ $('#calculateButton').click(function() {
     // Generar el archivo Excel y descargarlo
     XLSX.writeFile(wb, 'CalculoSalarios.xlsx');
 
+    var successToast = new bootstrap.Toast(document.getElementById('successToast'), {
+        autohide: true, // Cambiar a false si no deseas que se cierre automáticamente
+        delay: 2000    // Mostrar durante 10 segundos (10000 ms)
+    });
+    successToast.show();
+
     $('#fileContent').val('');
-    $('#fileContent').hide();
     $('#calculateButton').hide();
 });
 
