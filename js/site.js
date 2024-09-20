@@ -1,11 +1,24 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
-
 $(document).ready(function() {
     var currentYear = new Date().getFullYear();
         
     document.getElementById("currentYear").textContent = currentYear;
+
+    setDefaultParameters();
+    $('#calculateButton').hide();
 });
+
+function setDefaultParameters(){
+    $('#media15').val(formatCurrency(salarioMedia15));
+    $('#media16').val(formatCurrency(salarioMedia16));
+    $('#media17').val(formatCurrency(salarioMedia17));
+    $('#media18').val(formatCurrency(salarioMedia18));
+    $('#media19').val(formatCurrency(salarioMedia19));
+    $('#media20').val(formatCurrency(salarioMedia20));
+    $('#media21').val(formatCurrency(salarioMedia21));
+    $('#media22').val(formatCurrency(salarioMedia22));
+}
 
 document.getElementById('fileContent').addEventListener('paste', function(event) {
     $('#calculateButton').show();
